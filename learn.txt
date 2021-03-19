@@ -1,0 +1,141 @@
+ li = list((1, 2, 4, 5, 6, 7))
+  li[::2]  format li[start:end:step] =li[0:5:2]
+  li[::-1]  [7, 6, 5, 4, 2, 1]
+  method append, remove, del, extend, insert, index
+  range(num), range(num1, num2) range(num1, num2, step)
+  def many_argument(*args) args will be a tuble many_argument(1,2) print(args) -->(1,2)
+ def many_args(**kwargs) **kwargs will be a dict many_argument(a=1,b=3) -->{'a': 1, 'b': 2}
+ def add(a, b):
+     print(a+b)
+ l =[1,3]  or l=(1,3) or l={"a":1,"b":3}-->add(**l)
+ add(*l)
+
+ enumetare
+ -----------
+ l1 = ["eat","sleep","repeat"] or the same with tuble
+ for i, j in enumerate(l1):
+    print(i) -->0,1,2 #or can set arg with number start by default start =0 enumerate(l1,3) -->3,4,5
+    print(j) -->eat, sleep, repeat
+
+ http
+---------------------------------------------------------------
+ Both “grequests” and “aiohttp” are more modern-oriented
+ libraries and aim to make HTTP with Python more asynchronous. This becomes
+ especially important for very heavy-duty applications where you’d have to make lots
+ of HTTP requests as quickly as possible
+
+ bs4
+ ------------------------------------------------------------------
+  ptint(soup.pretify())
+ • find(name, attrs, recursive, string, **keywords);
+ • find_all(name, attrs, recursive, string, limit, **keywords).
+ Writing “find(id='myid')” the same as “find(attrs={'id': 'myid'})”.
+ “find(class_='myclass')” becase class is key word in python and dont have name_
+ get_text(strip=True)  =text.strip()
+ get_text('--')
+ cites = html_soup.find_all('div', class_='citation', limit=5)
+ link = soup.find('a')
+ link.get('href')
+ tag.find('div').find('table').find('thead').find('tr')=tag.div.table.thead.tr
+ find(class_='class-one class-two') = find(class_=['class-one', 'class-two'])
+ html_soup.select('a'), html_soup.select('info'), html_soup.select(div.classa.classb),html_soup.select('a[href^="http://example.com/"]')
+ html_soup.select(ul.lst > li')
+
+ <input type="hidden" name="protection" value="2c17abf5d5b4e326bea802600ff88405">
+ html_soup.find('input', attrs={'name': 'protection'}).get('value')
+
+ data = {}
+ for form in html_soup.find_all('form'):
+  #Get out the hidden form fields
+ for inp in form.select('input[type=hidden]'):
+ data[inp.get('name')] = inp.get('value')
+ data.update({'login': '', 'password': ''})
+
+ find -->find tag
+ get --> get atribute
+ if you have spaces in your markup in between nodes BeautifulSoup will turn those into NavigableString's -->bookcraw
+
+ html = urlopen('http://en.wikipedia.org/wiki/Python_(programming_language)')
+ bs = BeautifulSoup(html, 'html.parser')
+ content = bs.find('div', {'id':'mw-content-text'}).get_text()
+ content = bytes(content, 'UTF-8')
+ content = content.decode('UTF-8')
+ -----------------------------------------------------------
+ <form action="submit.html?type=student" method="post">
+ = requests.post(url, params={'type': 'student'}, data=formdata)
+
+ forms that allow you to upload files from your local machine to a web
+ server:Content-Type :application/x-www-form-urlencoded (the default) and multipart/form-data:allows us to include a file’s contents in the
+ request body, which might be in the form of binary, non-textual data
+ <form action="upload.php" method="post" enctype="multipart/form-data">
+ <input type="file" name="profile_picture">
+ <input type="submit" value="Upload your profile picture">
+ </form>
+ filedata = {'profile_picture': open('me.jpg', 'rb')}
+ r = requests.post(url, data=formdata, files=filedata)
+
+  GET to “SELECT” a resource given a URL, POST to “UPDATE” it, PUT to “UPSERT” it (“UPDATE” or “INSERT” if it doesnot exist), and DELETE to “DELETE” it
+
+ requests
+ my_cookies=r.cookies
+ my_cookies['SeSSiOn_iD'] = r.cookies.get('SeSSiOn_iD')
+
+ immediately redirected to the secret page after successfully logging in “Set-Cookie”
+ response header is present in the response following the HTTP POST request, and not in the response for the redirected page.
+ r = requests.post(url, data={'username': 'dummy', 'password': '1234'},
+ allow_redirects=False)  allow_redirects to get cookies then set this cookies to next requests that require session_id
+ because when redirect requests.post gone so cant use r.cookies
+
+import requests
+ url = url = 'http://www.webscrapingfordatascience.com/trickylogin/'
+ r = requests.get(url)   or requests.post(url)
+ ck = r.cookies   get the cookies in form page
+ print(ck)
+ r = requests.post(url, params={"p": "login"}, data={"username": "aaa", "password": "222"}, cookies=ck, allow_redirects=False)
+ ck = r.cookies   update cookies because session_id change
+ print(ck)
+ r = requests.get(url, params={'p': 'protected'}, cookies=ck)
+ print(r.text)
+
+ -----------------------------------------------------------------
+ session
+ very time an HTTP response comes in, we should update our client-side cookie information accordingly to replace use sessions
+ this will return the same result without us having to worry about redirects or dealing with cookies manually.
+ specifies that various requests belong together — to the same session — and that requests should hence deal with cookies automatically behind the scenes
+ if you need to set global header fields, such as the “User-Agent”
+ header, this can simply be done once instead of using the headers argument every time to make a request
+ s = requests.Session()
+ s.headers.update({'User-Agent': 'Chrome!'})   now all requests below have headers={'User-Agent': 'Chrome!'}
+ r = s.post(url)
+ print(r.cookies)
+ r = s.post(url, params={"p":"login"}, data={"username": "aaa", "password": "222"})
+ print(r.cookies)
+ r = s.get(url, params={'p': 'protected'})
+ print(r.text)
+
+ mysql
+ ------------------------------------------------------------------------
+ insert-->when invalid value -->return error then  stop
+ insert ignore --> when invalid value -->pass not stop program
+ SET GLOBAL FOREIGN_KEY_CHECKS=0; to empty table then SET GLOBAL FOREIGN_KEY_CHECKS=1;
+ setup remote mysql:match any ip address %.%.%.%
+
+ selenium
+ ------------------------------------------------------------------------
+import os
+from selenium import webdriver
+import time
+options = webdriver.ChromeOptions()
+options.headless = True
+driver = webdriver.Chrome(os.getcwd()+"\\chromedriver.exe", options=options)
+url = 'http://www.webscrapingfordatascience.com/complexjavascript/'
+driver.get(url)
+time.sleep(2)
+# print(driver.page_source)
+for quote in driver.find_elements_by_class_name('quote'):
+    time.sleep(1)
+    print(quote.text)
+input('Press ENTER to close the automated browser')
+driver.quit()
+
+
