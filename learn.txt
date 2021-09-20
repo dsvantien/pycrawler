@@ -40,6 +40,8 @@
  find(class_='class-one class-two') = find(class_=['class-one', 'class-two'])
  html_soup.select('a'), html_soup.select('info'), html_soup.select(div.classa.classb),html_soup.select('a[href^="http://example.com/"]')
  html_soup.select(ul.lst > li')
+ soup.find(id='product_description').find_next_sibling('p').get_text(strip=True)
+ soup.find('th', string='Number of reviews').find_next_sibling('td').get_text(strip=True)
 
  <input type="hidden" name="protection" value="2c17abf5d5b4e326bea802600ff88405">
  html_soup.find('input', attrs={'name': 'protection'}).get('value')
