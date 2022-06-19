@@ -1,0 +1,96 @@
+=left(a2,4)&"-"&mid(a2,5,2)&"-"&right(a2,2)
+--------------------------------------------------
+Django
+create virtualenv: mkvirtualenv my_django_environment(name project eg.django1)
+deactivate — Exit out of the current Python virtual environment
+workon — List available virtual environments
+workon name_of_environment — Activate the specified Python virtual environment
+rmvirtualenv name_of_environment — Remove the specified environment.
+cd path to path(cd django 1) cd.. to go back
+------------------------------------------------------------------------------------------------------------------
+mkdir flaskser
+cd flaskser
+virtualenv flaskvenv
+flaskvenv\scripts\activate
+---------------------------------------------
+django-admin startproject web_project .
+python manage.py runserver
+(When you run the server the first time, it creates a default SQLite database in the file db.sqlite3,
+which is intended for development purposes but can be used in production for low-volume web apps. Also, Django's built-in web 
+server is intended only for local development purposes. When you deploy to a web host, however, Django uses the host's web server instead. 
+The wsgi.py module in the Django project takes care of hooking into the production servers)
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+python manage.py startapp polls
+-----------------------------------------------------------------------
+Change your models (in models.py).
+Run python manage.py makemigrations :to create migrations for those changes
+Run python manage.py migrate :to apply those changes to the database.
+---------------------------------------------------------------------------
+python manage.py createsuperuser
+python manage.py runserver
+-----------------------------------------------------------------------------
+queryset: python manage.py shell
+------------------------------------------------
+python manage.py collectstatic
+---------------------------------
+cls-->clear cmd
+----------------------------------
++ AJAX requests don't work with the file:// protocol due to security restrictions, i.e. you need a server if your site fetches content through JavaScript.
++ Having the page reload automatically after changes to files can accelerate development.
+1.python -m SimpleHTTPServer
+or:need node.js and npm install -g live-server then live-server
+-----------------------------------------------------------------
+npx create-react-app my-app
+cd my-app
+npm i bootstrap --save
+npm i react-icons
+npm i react-router-dom --save 
+code . -->open in vscode
+import 'bootstrap/dist/css/booststrap.min.css'app.js                                       REACR
+npm start
+------------
+npm install -g create-react-app
+create-react-app my-app
+cd my-app
+git init
+heroku create -b https://github.com/mars/create-react-app-buildpack.git                   HEROKU
+git add .
+git commit -m "react-create-app on Heroku"
+git push heroku master
+heroku open
+---------------------
+when change
+ heroku login
+$ cd my-project/
+$ git init
+$ heroku git:remote -a ngyentien
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
+---------------------------------------------------------------------------------------------------------------
+tao file empty dj-react
+cd dj-react
+pip3 install pipenv
+pipenv shell -->tao mt ao
+pipenv install django djangorestframwork django-rest-knox
+
+
+
+(dj-react) C:\Users\dsvan\Envs\dj-react\leadmanager>python manage.py startapp frontend
+
+(dj-react) C:\Users\dsvan\Envs\dj-react\leadmanager>mkdir .\frontend\src\components
+mkdir .\frontend\static\frondend
+mkdir .\frontend\templates\frondend
+then:src tao file index.js
+components tao file App.js
+templates/index.html
+
+cd..-> dj-react
+npm init -y
+npm i -D webpack webpack-cli
+(dj-react) C:\Users\dsvan\Envs\dj-react>npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
+(dj-react) C:\Users\dsvan\Envs\dj-react>npm i react react-dom prop-types
+sua file package.json
+npm run dev
